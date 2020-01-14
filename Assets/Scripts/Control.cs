@@ -13,13 +13,19 @@ public class Control : MonoBehaviour
     public VariableJoystick variableJoystick;
     public Rigidbody2D rb;
 
+    public bool isControlActive;
+
     void Start()
     {
+        isControlActive = true;
         jump_button.onClick.AddListener(TaskOnClick);
     }
 
     void Update()
     {
+        if (!isControlActive)
+            return;
+
         Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
         velocity.x = variableJoystick.Horizontal * speedX;
         GetComponent<Rigidbody2D>().velocity = velocity;
@@ -27,8 +33,11 @@ public class Control : MonoBehaviour
 
     private void TaskOnClick()
     {
+        if (!isControlActive)
+            return;
+
         Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
-        velocity.y = speedX;
+        velocity.y = speedY;
         GetComponent<Rigidbody2D>().velocity = velocity;
     }
 
