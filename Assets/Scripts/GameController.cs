@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour
     public Button die_button;
     public VariableJoystick variableJoystick;
     public Sprite dead;
-    public SpriteRenderer spriteRenderer;
     int index = 0;
 
     private Control currentControl;
@@ -37,7 +36,6 @@ public class GameController : MonoBehaviour
             currentControl.die_button = die_button;
             currentControl.variableJoystick = variableJoystick;
             currentControl.dead = dead;
-            //currentControl.spriteRenderer = gameObjects[index].spriteRenderer;
     index++;
         }
     }

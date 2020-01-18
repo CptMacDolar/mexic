@@ -14,7 +14,7 @@ public class Control : MonoBehaviour
     public VariableJoystick variableJoystick;
     public Rigidbody2D rb;
     public Sprite dead;
-   // public SpriteRenderer spriteRenderer;
+
 
     public bool isControlActive;
     public bool kill;
@@ -29,12 +29,9 @@ public class Control : MonoBehaviour
 
     void Update()
     {
-        if (kill && spriteRenderer.sprite != dead)
-            changeSprite();
-
         if (!isControlActive)
             return;
-
+    
         Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
         velocity.x = variableJoystick.Horizontal * speedX;
         GetComponent<Rigidbody2D>().velocity = velocity;
@@ -43,29 +40,38 @@ public class Control : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Salt")
+        {
+            changeSprites();
             kill = true;
+        }
     }
-
+    public double cooldown_time = 0.10;
+    private double next_jump_time;
     private void Jump()
     {
         if (!isControlActive)
             return;
-
-        Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
-        velocity.y = speedY;
-        GetComponent<Rigidbody2D>().velocity = velocity;
+        if (Time.time >= next_jump_time)
+        {
+            Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
+            velocity.y = speedY;
+            GetComponent<Rigidbody2D>().velocity = velocity;
+            next_jump_time = Time.time + cooldown_time;
+        }
     }
     private void Die()
     {
         if (!isControlActive)
             return;
         kill = true;
-    }
+        changeSprites();
 
-    public void changeSprite()
-    {
-        spriteRenderer.sprite = dead;
     }
+    private void changeSprites()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = dead;
+    }
+ 
 
 
 }

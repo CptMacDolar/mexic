@@ -724,6 +724,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406513596}
   m_CullTransparentMesh: 0
+--- !u!1 &480009880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4321768920636089831, guid: 403f359ac17e4cd4a8759ca940184f5c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4321768922686028060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &480009886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480009880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17fc21bd909b70044bb11607d057c90d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,7 +1197,6 @@ MonoBehaviour:
   die_button: {fileID: 224756890}
   variableJoystick: {fileID: 614151572}
   dead: {fileID: 21300000, guid: 2cadb1c3219b32843bfdbf2fa6eeaeaf, type: 3}
-  spriteRenderer: {fileID: 693008197}
 --- !u!4 &693008196
 Transform:
   m_ObjectHideFlags: 0
