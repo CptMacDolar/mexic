@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,7 @@ public class Control : MonoBehaviour
     public Button jump_button;
     public Button restart_button;
     public Button die_button;
+    public Button esc_button;
     public VariableJoystick variableJoystick;
     public Rigidbody2D rb;
     public Sprite dead;
@@ -23,6 +25,7 @@ public class Control : MonoBehaviour
     public bool isControlActive;
     public bool kill;
     public bool win;
+    private bool had_collision;
 
     void Start()
     {
@@ -30,28 +33,15 @@ public class Control : MonoBehaviour
         kill = false;
         isControlActive = true;
         jump_button.onClick.AddListener(Jump);
+        esc_button.onClick.AddListener(Esc);
         die_button.onClick.AddListener(Die);
         restart_button.onClick.AddListener(Restart);
     }
-
     void Update()
     {
         if (!isControlActive)
             return;
-        //switch (variableJoystick.Horizontal)
-        //{
-        //    case 0:
-        //        gameObject.GetComponent<SpriteRenderer>().sprite = front;
-        //        break;
-        //    case 1:
-        //        gameObject.GetComponent<SpriteRenderer>().sprite = right;
-        //        break;
-        //    case -1:
-        //        gameObject.GetComponent<SpriteRenderer>().sprite = dead;
-        //        break;
-
-        //}
-
+     
         if(variableJoystick.Horizontal == 0)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = front;
@@ -66,17 +56,30 @@ public class Control : MonoBehaviour
         }
         Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
         velocity.x = variableJoystick.Horizontal * speedX;
+        if (Input.GetKey(KeyCode.RightArrow))
+            velocity.x = speedX;
+        if (Input.GetKey(KeyCode.LeftArrow))
+            velocity.x = -speedX;
         GetComponent<Rigidbody2D>().velocity = velocity;
+
+        if (Input.GetKey(KeyCode.Space))
+            Jump();
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+            Die();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Salt")
+        if (collision.gameObject.name == "Salt" || collision.gameObject.name == "Salt1")
         {
             changeSprites();
             kill = true;
         }
-        if (collision.gameObject.name == "Platform_win")
+        had_collision = true;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Flag_empty")
         {
             changeSprites();
             win = true;
@@ -88,12 +91,13 @@ public class Control : MonoBehaviour
     {
         if (!isControlActive)
             return;
-        if (Time.time >= next_jump_time)
+        if (Time.time >= next_jump_time && had_collision)
         {
             Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
             velocity.y = speedY;
             GetComponent<Rigidbody2D>().velocity = velocity;
             next_jump_time = Time.time + cooldown_time;
+            had_collision = false;
         }
     }
     private void Die()
@@ -110,10 +114,19 @@ public class Control : MonoBehaviour
     }
     private void Restart()
     {
-        SceneManager.LoadScene("Level1");
+        //SceneManager.LoadScene();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    private void Esc()
+    {
+        if (SceneManager.GetActiveScene().name == "ChooseLevel")
+            Application.Quit();
+        else
+            SceneManager.LoadScene("ChooseLevel");
     }
 
- 
+
+
 
 
 }
