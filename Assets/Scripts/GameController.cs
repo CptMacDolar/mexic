@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 
     public Button jump_button;
     public Button restart_button;
+    public Button next_level;
     public Button die_button;
     public Button esc_button;
     public VariableJoystick variableJoystick;
@@ -17,7 +18,7 @@ public class GameController : MonoBehaviour
     public Sprite front;
     public Sprite right;
     public Sprite left;
-    public Image win;
+    public GameObject win_screen;
     public Text counter;
     private int counter_int;
     int index = 0;
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour
             CharacterDied();
 
         if (currentControl.win)
-            win.enabled = true;
+            win_screen.SetActive(true);
     }
 
     private void Spawn()
@@ -54,6 +55,7 @@ public class GameController : MonoBehaviour
             currentControl.front = front;
             currentControl.right = right;
             currentControl.left = left;
+            currentControl.next_level = next_level;
             index++;
         }
     }

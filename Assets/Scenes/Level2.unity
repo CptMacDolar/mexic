@@ -489,18 +489,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc6bcd8ea0be8384593f501f7e45d70a, type: 3}
---- !u!114 &691747815 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2030467865357373790, guid: cc6bcd8ea0be8384593f501f7e45d70a,
+--- !u!1 &691747815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2484983866750246185, guid: cc6bcd8ea0be8384593f501f7e45d70a,
     type: 3}
   m_PrefabInstance: {fileID: 691747814}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &691747816 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7703806617192149487, guid: cc6bcd8ea0be8384593f501f7e45d70a,
@@ -523,6 +517,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &691747818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2829541965940299944, guid: cc6bcd8ea0be8384593f501f7e45d70a,
+    type: 3}
+  m_PrefabInstance: {fileID: 691747814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &889491570 stripped
@@ -623,6 +629,7 @@ MonoBehaviour:
   - {fileID: 4321768920636089827, guid: 403f359ac17e4cd4a8759ca940184f5c, type: 3}
   jump_button: {fileID: 1604039603}
   restart_button: {fileID: 889491570}
+  next_level: {fileID: 691747818}
   die_button: {fileID: 2026159232}
   esc_button: {fileID: 691747816}
   variableJoystick: {fileID: 431185083}
@@ -630,7 +637,7 @@ MonoBehaviour:
   front: {fileID: 21300000, guid: f57f2ca232c714a4888cd81e81eaab6d, type: 3}
   right: {fileID: 21300000, guid: b4f8075df6f71d747a7629a77e0a7ad2, type: 3}
   left: {fileID: 21300000, guid: 5be3d7173870010408ad0dc1f287f0f1, type: 3}
-  win: {fileID: 691747815}
+  win_screen: {fileID: 691747815}
   counter: {fileID: 691747817}
 --- !u!4 &1263100881
 Transform:

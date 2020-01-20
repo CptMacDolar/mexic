@@ -12,6 +12,7 @@ public class Control : MonoBehaviour
 
     public Button jump_button;
     public Button restart_button;
+    public Button next_level;
     public Button die_button;
     public Button esc_button;
     public VariableJoystick variableJoystick;
@@ -36,6 +37,7 @@ public class Control : MonoBehaviour
         esc_button.onClick.AddListener(Esc);
         die_button.onClick.AddListener(Die);
         restart_button.onClick.AddListener(Restart);
+        next_level.onClick.AddListener(Next_level);
     }
     void Update()
     {
@@ -70,7 +72,7 @@ public class Control : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Salt" || collision.gameObject.name == "Salt1")
+        if (collision.gameObject.name == "Salt" || collision.gameObject.name == "Salt1" || collision.gameObject.name == "Salt2")
         {
             changeSprites();
             kill = true;
@@ -114,7 +116,6 @@ public class Control : MonoBehaviour
     }
     private void Restart()
     {
-        //SceneManager.LoadScene();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     private void Esc()
@@ -123,6 +124,14 @@ public class Control : MonoBehaviour
             Application.Quit();
         else
             SceneManager.LoadScene("ChooseLevel");
+    }
+    private void Next_level()
+    {
+        int i = SceneManager.GetActiveScene().buildIndex;
+        if (i == 3)
+            SceneManager.LoadScene("ChooseLevel");
+        else
+            SceneManager.LoadScene(i+1);
     }
 
 
